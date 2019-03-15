@@ -127,12 +127,12 @@
                    
                    <thead>                                 
 					<th>Name</th>
-					<th>Email</th>
-                    <th>Address</th>
+					<th>Address</th>
+                    <th>City</th>
                     <th>Country</th>
-                    <th>City</th>					
+                    <th>Email</th>					
                     <th>Contact</th>
-                    <th>Delete</th>
+                    <th></th>
                    </thead>
    
 </table>
@@ -167,16 +167,19 @@
 								
 								
 								
-                                    <form id="form_id">
+                                    <form id="form_id" style="display:none">
 																																	
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>								                                        
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>		
+										<input type="textarea" class="form-control" id="address" name="address" placeholder="Address" required>										
+										<input type="text" class="form-control" id="city" name="city" placeholder="City" required>		
 										<input type="text" class="form-control" id="country" name="country" placeholder="Country" required>	
-										<input type="text" class="form-control" id="city" name="city" placeholder="City" required>	
 										<input type="text" class="form-control" id="email" name="email" placeholder="Email" required>	
-										<input type="textarea" class="form-control" id="address" name="address" placeholder="Address" required>
-										<h6 style="color:red" id="error"></h6>
+										<input type="text" class="form-control" id="contact" name="contact" placeholder="Contact" required>	
+										<input type="text" class="form-control" id="adminName" name="adminName" placeholder="Admin Name" required>
+										
+										<h6 style="color:red;text-align:center;" id="error"></h6>
 										<p id="demo"></p>
-                                        <button class="btn academy-btn mt-30" type="button" onclick="getalert();" >Register</button>									
+                                        <button class="btn btn-danger" type="button" onclick="AddUser();" >Register</button>									
 										
 																											
                                     </form>
@@ -184,34 +187,25 @@
 									
 									
 										<script>					
-										let isForm = true;
-										getAllInstitutions();
+										let isForm = false;
 										function hideAndShow(){
-										
-										if(isForm == true){
-										document.getElementById("form_id").style.display="none"
-										isForm = false;
+											if(isForm == false){
+											document.getElementById("form_id").style.display="block"
+											isForm = true;
+											}
+											else
+											{
+											document.getElementById("form_id").style.display="none"
+											isForm = false;
+											}
 										}
-										else
-										{
-										document.getElementById("form_id").style.display="block"
-										isForm = true;
-										}
-										
-										}
-										
-										
 										
 										function getAllInstitutions(){
 										console.log("am in getAllInstitutions")
 										var xhttp=new XMLHttpRequest();
 											xhttp.onreadystatechange=function(){
 											 if (this.readyState == 4 && this.status == 200) {
-												
-												
 												var obj = JSON.parse(this.responseText);
-												
-												
 												const name=obj.map(item=>item.name);
 												const address=obj.map(item=>item.address);
 												const city=obj.map(item=>item.city);
@@ -220,8 +214,7 @@
 												const contact=obj.map(item=>item.contact);
 												var table = document.getElementById("mytable");
 												
-												for(var i=0;i<obj.length;i++ ){
-													console.log("am in for")
+												for(var i=0;i<obj.length;i++){
 													butt=document.createElement('button');
 													var row = table.insertRow(table.length);
 													var cell1 = row.insertCell(0);
@@ -236,33 +229,61 @@
 													
 													btnRemove.type = "button";
 													btnRemove.value = "Delete";
-													
-
-												
-												
 													cell.appendChild(btnRemove);
-
 													cell1.innerHTML = name[i];
 													cell2.innerHTML = address[i];
 													cell3.innerHTML = city[i];
 													cell4.innerHTML = country[i];
 													cell5.innerHTML = email[i];
 													cell6.innerHTML = contact[i];
-													
-												}
-												
-												
-												
-													
-													
-													
-												
+													}
 												}};
-												
-												 xhttp.open("GET", "http://10.20.178.207:8080/rest/institution/all", true);
+												 xhttp.open("GET", "http://192.168.1.104:8080/rest/institution/all", true);
 												 xhttp.send();
-												
 												 }
+												 
+												 
+										function AddUser()
+										{
+											const Name = document.getElementById("name").value;
+											const Address = document.getElementById("address").value;
+											const City = document.getElementById("city").value;
+											const Country = document.getElementById("country").value;
+											const Email = document.getElementById("email").value;
+											const Contact = document.getElementById("contact").value;
+											const AdminName = document.getElementById("adminName").value;
+											
+											
+											if(Name ==""||Address ==""|| City ==""||Country ==""||Email ==""||Contact ==""||AdminName =="")
+											{
+												
+												document.getElementById("error").style.display="block";
+												return  document.getElementById("error").innerHTML="Enter the required field";;
+											}
+											else
+											{
+											document.getElementById("error").style.display="none";
+											const data={
+												name:Name,
+												address:Address,
+												city:City,
+												country:Country,
+												email:Email,
+												contact:Contact
+											};
+											
+											const jsonString=JSON.stringify(data);
+											console.log(jsonString)
+											var xhttp=new XMLHttpRequest();
+											xhttp.open("POST", "http://192.168.1.104:8080/rest/institution/load", true);
+											xhttp.setRequestHeader("Content-Type","application/json");
+											xhttp.send(jsonString);
+											
+											}
+											
+											
+										}
+												 
 									</script>
                                 </div>
                             </div>
