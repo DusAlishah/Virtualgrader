@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Virtual Grader</title>
+
+    <!-- Favicon -->
+ 
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+	
+	
+	
+	
+
+</head>
+
+<body  onload=" getAllInstitutions()">
+
+
+
+    <!-- ##### Preloader ##### -->
+    <div id="preloader">
+        <i class="circle-preloader"></i>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <div class="header-content h-100 d-flex align-items-center justify-content-between">
+                            <div class="academy-logo">
+                                <h1>Virtual Grader</h1>
+                            </div>
+                            <div>								
+                                <h3> Hi! Nabeel </t><a href="login.html" class="btn btn-danger"  data-delay="700ms">Logout</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="academy-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="academyNav">
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="index.html">Home</a></li>            
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="course.html">Service</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+
+                        <!-- Calling Info -->
+                        <div class="calling-info">
+                            <div class="call-center">
+								<a href="tel:+654563325568889"><i class="icon-telephone-2"></i> <span>(+92) 336 332 5568</span></a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img" style="background-image: url(img/bg-img/contantT.jpg);">
+      
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Google Maps ##### -->
+    <div class="map-area wow fadeInUp" data-wow-delay="300ms">
+        <div id="googleMap"></div>
+    </div>
+	
+	
+	
+	
+	
+	
+	
+	    <section class="contact-area">
+        <div class="container" >        
+                    <div class="contact-content">
+                            <!-- Contact Form Area -->
+                            <div align="center">
+                                <div class="contact-form-area wow fadeInUp" data-wow-delay="500ms" >
+								
+<table id="mytable" class="table table-bordred table-striped">
+                   
+                   <thead>                                 
+					<th>Name</th>
+					<th>Email</th>
+                    <th>Address</th>
+                    <th>Country</th>
+                    <th>City</th>					
+                    <th>Contact</th>
+                    <th>Delete</th>
+                   </thead>
+   
+</table>
+								
+                                 				
+
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </section>
+	
+	
+	
+	
+	
+	
+
+
+    <!-- ##### Contact Area Start ##### -->
+    <section class="contact-area" >
+
+        <div class="container" >        
+		
+                    <div class="contact-content">
+                            <!-- Contact Form Area -->
+                            <div align="center">
+								
+                                <div class="contact-form-area wow fadeInUp" data-wow-delay="500ms" >
+								<h3><Button class="btn btn-success" id="add" name="add" onclick="hideAndShow();" ><span class="fa fa-plus " style="font-size:38px" ></span></Button> </h3>
+								
+								
+								
+                                    <form id="form_id">
+																																	
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>								                                        
+										<input type="text" class="form-control" id="country" name="country" placeholder="Country" required>	
+										<input type="text" class="form-control" id="city" name="city" placeholder="City" required>	
+										<input type="text" class="form-control" id="email" name="email" placeholder="Email" required>	
+										<input type="textarea" class="form-control" id="address" name="address" placeholder="Address" required>
+										<h6 style="color:red" id="error"></h6>
+										<p id="demo"></p>
+                                        <button class="btn academy-btn mt-30" type="button" onclick="getalert();" >Register</button>									
+										
+																											
+                                    </form>
+									
+									
+									
+										<script>					
+										let isForm = true;
+										getAllInstitutions();
+										function hideAndShow(){
+										
+										if(isForm == true){
+										document.getElementById("form_id").style.display="none"
+										isForm = false;
+										}
+										else
+										{
+										document.getElementById("form_id").style.display="block"
+										isForm = true;
+										}
+										
+										}
+										
+										
+										
+										function getAllInstitutions(){
+										console.log("am in getAllInstitutions")
+										var xhttp=new XMLHttpRequest();
+											xhttp.onreadystatechange=function(){
+											 if (this.readyState == 4 && this.status == 200) {
+												
+												
+												var obj = JSON.parse(this.responseText);
+												
+												
+												const name=obj.map(item=>item.name);
+												const address=obj.map(item=>item.address);
+												const city=obj.map(item=>item.city);
+												const country=obj.map(item=>item.country);
+												const email=obj.map(item=>item.email);
+												const contact=obj.map(item=>item.contact);
+												var table = document.getElementById("mytable");
+												
+												for(var i=0;i<obj.length;i++ ){
+													console.log("am in for")
+													butt=document.createElement('button');
+													var row = table.insertRow(table.length);
+													var cell1 = row.insertCell(0);
+													var cell2 = row.insertCell(1);
+													var cell3 = row.insertCell(2);
+													var cell4 = row.insertCell(3);
+													var cell5 = row.insertCell(4);
+													var cell6 = row.insertCell(5);
+													cell = row.insertCell(-1);
+													var btnRemove = document.createElement("INPUT");
+													btnRemove.className="btn btn-danger";
+													
+													btnRemove.type = "button";
+													btnRemove.value = "Delete";
+													
+
+												
+												
+													cell.appendChild(btnRemove);
+
+													cell1.innerHTML = name[i];
+													cell2.innerHTML = address[i];
+													cell3.innerHTML = city[i];
+													cell4.innerHTML = country[i];
+													cell5.innerHTML = email[i];
+													cell6.innerHTML = contact[i];
+													
+												}
+												
+												
+												
+													
+													
+													
+												
+												}};
+												
+												 xhttp.open("GET", "http://10.20.178.207:8080/rest/institution/all", true);
+												 xhttp.send();
+												
+												 }
+									</script>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+
+ 
+                           
+
+    <!-- ##### Footer Area Start ##### -->
+	       <div class="bottom-footer-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Virtual Grader </p>
+						<div style="margin-top:2%">
+						<img src="facebook.png" width="3%" style="margin-left:1%"  align="center">
+						<img src="gmail.png" width="4%" style="margin-left:1%" align="center">
+						<img src="linkdin.png" width="3%" style="margin-left:1%" align="center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+	
+	
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="js/bootstrap/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="js/plugins/plugins.js"></script>
+    <!-- Active js -->
+    <script src="js/active.js"></script>
+  
+</body>
+
+</html>
